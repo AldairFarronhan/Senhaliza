@@ -12,4 +12,11 @@ import java.util.List;
 public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
     @Query("SELECT e FROM Exercise e WHERE e.lesson.id = :lessonId")
     List<Exercise> findAllByLessonId(@Param("lessonId") Long lessonId);
+
+    @Query(value = "SELECT MIN(e.id) " +
+            "FROM exercises e " +
+            "JOIN students_exercises se ON e.id = se.exercises_id " +
+            "WHERE se.students_id = ?1 AND e.lessons_id = ?2 AND se.correct IS NULL", nativeQuery = true)
+    Long findNextExerciseId(Long studentId, Long lessonId);
+
 }

@@ -1,9 +1,13 @@
 package GRUPO1.TP.servicesimpl;
 
+import GRUPO1.TP.dto.DTOExercise;
 import GRUPO1.TP.entities.Exercise;
+import GRUPO1.TP.entities.StudentExercise;
 import GRUPO1.TP.exceptions.IncompleteDataException;
 import GRUPO1.TP.exceptions.ResourceNotFoundException;
+import GRUPO1.TP.repositories.ExerciseImageRepository;
 import GRUPO1.TP.repositories.ExerciseRepository;
+import GRUPO1.TP.repositories.StudentExerciseRepository;
 import GRUPO1.TP.services.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +17,47 @@ import java.util.List;
 public class ExerciseServiceImpl implements ExerciseService{
     @Autowired
     ExerciseRepository exerciseRepository;
+    ExerciseImageRepository exerciseImageRepository;
 
+    @Autowired
+    private StudentExerciseRepository studentsExercisesRepository;
+
+    public DTOExercise getExerciseSummary(Long exerciseId) {
+            Exercise exercise = exerciseRepository.findById(exerciseId).orElse(null);
+            if (exercise == null) {
+                return null;
+            }
+
+            boolean correctOption = false;
+            String correctAnswer = "";
+            if (!exercise.getExercisesImages().isEmpty()) {
+                correctOption = exercise.getExercisesImages().get(0).getCorrect_option();
+                correctAnswer = exercise.getExercisesImages().get(0).getCorrect_answer();
+            }
+
+            return new DTOExercise(
+                    exercise.getId(),
+                    exercise.getQuestion(),
+                    exercise.getLevel(),
+                    exercise.get(),
+                    exercise.getComment(),
+                    correctOption,
+                    correctAnswer
+            );
+        }
+        public void validateExercise(Long studentId, Long exerciseId, boolean correct) {
+            StudentExercise studentsExercises = studentsExercisesRepository.findByStudentIdAndExerciseId(studentId, exerciseId);
+            if (studentsExercises != null) {
+                studentsExercises.setCorrect(correct);
+                studentsExercisesRepository.save(studentsExercises);
+            }
+        }
+
+        public Long getNextExerciseId(Long studentId, Long lessonId) {
+            return exerciseRepository.findNextExerciseId(studentId, lessonId);
+        }
+
+        ///////////////////
     @Override
     public List<Exercise> listAll() {
         List<Exercise> exercises = exerciseRepository.findAll();

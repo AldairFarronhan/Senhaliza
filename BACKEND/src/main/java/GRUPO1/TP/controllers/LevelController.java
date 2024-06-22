@@ -35,7 +35,6 @@ public class LevelController {
         return new ResponseEntity<>(newLevel, HttpStatus.CREATED);
     }
 
-
     @DeleteMapping("/levels/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
         levelservice.delete(id);

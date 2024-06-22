@@ -1,5 +1,4 @@
 package GRUPO1.TP.dto;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,9 +9,4 @@ public class DTOStudentSummary {
     private Long completedLessons;
     private String currentPlan;
     private String level;
-
-
-
-
 }
-

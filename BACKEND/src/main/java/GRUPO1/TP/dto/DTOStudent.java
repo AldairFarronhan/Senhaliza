@@ -1,5 +1,4 @@
 package GRUPO1.TP.dto;
-
 import java.util.List;
 
 public class DTOStudent {

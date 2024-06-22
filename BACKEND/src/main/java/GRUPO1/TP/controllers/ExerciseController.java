@@ -1,5 +1,6 @@
 package GRUPO1.TP.controllers;
 
+import GRUPO1.TP.dto.DTOExercise;
 import GRUPO1.TP.entities.Exercise;
 import GRUPO1.TP.services.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,31 @@ public class ExerciseController {
         Exercise nexExercise = exerciseService.save(exerciseFound);
         return new ResponseEntity<>(nexExercise, HttpStatus.OK);
     }
+
+    @PostMapping("/{exerciseId}/next")
+    public ResponseEntity<DTOExercise> validateAndGetNextExercise(@RequestParam Long studentId, @PathVariable Long exerciseId, @RequestParam boolean correct, @RequestParam Long lessonId) {
+        // Validar el ejercicio actual
+        exerciseService.validateExercise(studentId, exerciseId, correct);
+
+        // Obtener el siguiente ejercicio
+        Long nextExerciseId = exerciseService.getNextExerciseId(studentId, lessonId);
+        if (nextExerciseId == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Obtener el resumen del siguiente ejercicio
+        DTOExercise dtoExercise = exerciseService.getExerciseSummary(nextExerciseId);
+        if (dtoExercise == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(dtoExercise);
+    }
+
+
+
+
+
+
 
 }

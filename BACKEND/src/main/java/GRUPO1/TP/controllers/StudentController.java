@@ -70,5 +70,4 @@ public class StudentController {
         Student newStudent = studentService.save(foundStudent);
         return new ResponseEntity<>(newStudent, HttpStatus.OK);
     }
-
 }

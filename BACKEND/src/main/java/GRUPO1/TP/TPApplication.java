@@ -36,7 +36,6 @@ public class TPApplication {
             ImageRepository imageRepository,
             StudentPlanRepository studentPlanRepository,
             StudentExerciseRepository studentExerciseRepository
-
     ){
         return args -> {
             authorityRepository.save(new Authority(AuthorityName.ROLE_ADMIN));

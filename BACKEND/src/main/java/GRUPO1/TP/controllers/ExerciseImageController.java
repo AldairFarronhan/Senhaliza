@@ -21,7 +21,6 @@ public class ExerciseImageController {
     public ResponseEntity<List<ExerciseImage>> getAll() {
         List<ExerciseImage> exerciseImages = exerciseImageService.listAll();
         return new ResponseEntity<>(exerciseImages, HttpStatus.OK);
-
     }
 
     @GetMapping("/exercises_images/{id}")
@@ -35,7 +34,6 @@ public class ExerciseImageController {
         ExerciseImage newExerciseImage = exerciseImageService.save(exerciseImage);
         return new ResponseEntity<>(newExerciseImage, HttpStatus.CREATED);
     }
-
 
     @DeleteMapping("/exercises_images/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
