@@ -1,0 +1,14 @@
+<app-sidenav (usuarioDeslogeado)="deshabilitarContenido()" *ngIf="logeado" (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+<app-body *ngIf="logeado"
+    [collapsed]="isSideNavCollapsed"
+    [screenWidth]="screenWidth"
+></app-body>
+
+<app-log-in (usuarioLogeado)="habilitarContenido()" *ngIf="!logeado"></app-log-in>
+
+
+<!-- <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+<app-body 
+    [collapsed]="isSideNavCollapsed"
+    [screenWidth]="screenWidth"
+></app-body> -->
