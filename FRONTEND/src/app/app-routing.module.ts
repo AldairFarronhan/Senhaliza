@@ -17,7 +17,6 @@ import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
-  //{path:"", component:DashboardComponent, pathMatch: 'full'},
   {path:"", component:LogInComponent},
   {path:"dashboard", component:DashboardComponent},
   {path:"lista-autoridades", component:AuthorityListComponent},
@@ -29,13 +28,12 @@ const routes: Routes = [
   {path:"lista-estudiantes", component:StudentListComponent},
   {path:"lista-usuarios", component:UserListComponent},
   
-  //{path:"nuevo-nivel", component: LevelNewComponent},
   {path:"nuevo-nivel", component: LevelListComponent},
   {path:"nueva-imagen", component: ImageListComponent},
   {path:"editar-nivel/:codigo", component: LevelListComponent},
   {path:"editar-imagen/:codigo", component: ImageListComponent},
   
-  //estudiante
+  //rutas para el estudiante
   {path:"estudiante-perfil", component: StudentProfileComponent},
   {path:"estudiante-lecciones", component: LessonListComponent},
   {path:"login", component:LogInComponent}

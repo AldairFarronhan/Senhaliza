@@ -28,7 +28,6 @@ import { ImageListComponent } from './components/image/image-list/image-list.com
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { AddComponent } from './components/add/add.component';
-import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ImageNewComponent } from './components/image/image-new/image-new.component';
 import { QuestionToMarkComponent } from './components/question/question-to-mark/question-to-mark.component';
 import { QuestionToCompleteComponent } from './components/question/question-to-complete/question-to-complete.component';
@@ -54,7 +53,6 @@ import { StudentProfileComponent } from './components/student/student-profile/st
     DashboardComponent,
     ConfirmComponent,
     AddComponent,
-    LandingPageComponent,
     ImageNewComponent,
     QuestionToMarkComponent,
     QuestionToCompleteComponent,
